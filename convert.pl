@@ -56,9 +56,10 @@ HERE
   }
 
   # Check for heading
-  if ($line !~ /[\.\?]$/) {
+  # If the line does not have at least one period, then it is a heading.
+  if ($line !~ /\./) {
     print <<"HERE";
-  <h3 id=\"toc_$tocCount\">$line</h3>
+  <h3>$line</h3>
 
 HERE
     $tocCount++;

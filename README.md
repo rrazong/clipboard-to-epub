@@ -8,6 +8,10 @@ Quick and dirty perl script to convert text to epub
 ```
 ./convert.pl input.txt
 ```
+Or,
+```
+pbpaste > input ; ./convert.pl input | pbcopy
+```
 
 ## Conversion
 * Assumes first line of text is the page title
