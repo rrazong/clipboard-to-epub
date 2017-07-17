@@ -7,7 +7,6 @@ my $filename = shift;
 open(INPUT, $filename) or die "Could not open $filename";
 
 my $titleFound = false;
-my $tocCount = 1;
 my $footnoteMode = false;
 my $footnoteCount = 1;
 
@@ -42,7 +41,7 @@ HERE
   }
 
   # Check for footnote
-  if ($footnoteMode) {
+  if ($line =~ /^\[/ && $footnoteMode) {
     print <<"HERE";
   <aside id="footnote$footnoteCount" epub:type="footnote">
     <p>
@@ -62,7 +61,6 @@ HERE
   <h3>$line</h3>
 
 HERE
-    $tocCount++;
   } else {
     # Found a paragraph
     $line = "<p>$line</p>\n";
@@ -80,5 +78,11 @@ if ($footnoteMode) {
   $footnoteMode = false;
   print "</div>\n";
 }
+
+print <<"HERE";
+</body>
+
+</html>
+HERE
 
 close(INPUT);
