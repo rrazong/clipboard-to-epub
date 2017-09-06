@@ -35,7 +35,7 @@ HERE
   }
 
   # Check if footnote section has begun
-  if ($line =~ /^\[/ && false == $footnoteMode) {
+  if ($line =~ /^\[\d+\]/ && false == $footnoteMode) {
     $footnoteMode = true;
     print "<div class=\"footnotes\">\n";
   }
